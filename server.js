@@ -7,7 +7,27 @@ const bookingService = require('./services/bookingService');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+const cors = require('cors');
+
+// Define allowed origins (Your local dev + Your production frontend)
+const allowedOrigins = [
+  'http://localhost:4200',
+  'https://frontend-assessment-code-base.vercel.app' // <--- REPLACE THIS with your actual Frontend URL
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 app.use(bodyParser.json());
 
 // --- ROUTES ---

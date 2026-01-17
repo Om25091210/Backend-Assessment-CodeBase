@@ -1,4 +1,4 @@
-# Hotel Room Reservation System (SDE 3 Assessment)
+# Hotel Room Reservation System (SDE Assessment)
 
 ## 📋 Project Overview
 This repository contains a full-stack solution for the **Hotel Room Reservation** assessment. It is a system designed to optimize room allocation based on proximity constraints to minimize guest travel time.
